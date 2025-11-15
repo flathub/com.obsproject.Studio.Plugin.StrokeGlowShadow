@@ -17,8 +17,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FiniteSingularity/obs-stroke-glow-shadow.git
-        tag: v1.5.2
-        commit: 4253ce1241b90a31e55a5af1b397e9c415db6391
+        tag: v1.5.3
+        commit: 7797b7defde1454929f1d7722193d5f82cf0c5de
         x-checker-data:
           type: git
           is-main-source: true
