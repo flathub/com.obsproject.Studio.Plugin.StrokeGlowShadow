@@ -1,7 +1,8 @@
 id: com.obsproject.Studio.Plugin.StrokeGlowShadow
+branch: stable
 runtime: com.obsproject.Studio
 runtime-version: stable
-sdk: org.kde.Sdk//6.6
+sdk: org.freedesktop.Sdk//26.08
 build-extension: true
 separate-locales: false
 build-options:
@@ -9,16 +10,21 @@ build-options:
 modules:
   - name: stroke-glow-shadow
     buildsystem: cmake-ninja
+    builddir: true
+    no-make-install: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_OUT_OF_TREE=On
+      - -DCMAKE_INSTALL_LIBDIR=lib
+      - -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF
+    build-commands:
+      - cmake --install . --component Modern
     post-install:
-      - install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ${FLATPAK_BUILDER_BUILDDIR}/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
         url: https://github.com/FiniteSingularity/obs-stroke-glow-shadow.git
-        tag: v1.5.3
-        commit: 7797b7defde1454929f1d7722193d5f82cf0c5de
+        tag: v1.6.1
+        commit: 6742704be21538a66fe15142162e59dac6eee76e
         x-checker-data:
           type: git
           is-main-source: true
